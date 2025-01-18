@@ -19,11 +19,11 @@ vim.opt.signcolumn = 'yes'
 vim.opt.updatetime = 250
 
 vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.opt.splitbelow = false
 
 vim.opt.cursorline = true
 
-vim.opt.scrolloff = 8 
+vim.opt.scrolloff = 8
 
 -- Yank highlight
 vim.api.nvim_create_autocmd('TextYankPost', {

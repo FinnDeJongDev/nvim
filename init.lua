@@ -32,12 +32,12 @@ require('lazy').setup({
         'ibhagwan/fzf-lua',
         config = function()
             require("fzf-lua").setup({
-                files={
+                files = {
                     multiprocess = true,
                 },
             })
             vim.keymap.set('n', '<leader>sf', require('fzf-lua').files, { desc = 'fzf files' })
-	    vim.keymap.set('n', '<leader>sw', require('fzf-lua').grep_cword, { desc = 'fzf grep cword' })
+            vim.keymap.set('n', '<leader>sw', require('fzf-lua').grep_cword, { desc = 'fzf grep cword' })
             vim.keymap.set('n', '<Esc><Esc>', require('fzf-lua').buffers, { desc = 'fzf buffers' })
         end,
     },
@@ -57,7 +57,7 @@ require('lazy').setup({
     {
         'olimorris/onedarkpro.nvim',
         priority = 1000,
-        config = function ()
+        config = function()
             require('onedarkpro').setup({
                 colors = {
                     cursorline = "#3b3b3b",
@@ -93,7 +93,8 @@ require('lazy').setup({
             })
             local cmp = require('cmp')
             local cmp_lsp = require('cmp_nvim_lsp')
-            local capabilities = vim.tbl_deep_extend('force', {}, vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities())
+            local capabilities = vim.tbl_deep_extend('force', {}, vim.lsp.protocol.make_client_capabilities(),
+                cmp_lsp.default_capabilities())
 
             require('fidget').setup({})
             require('mason').setup()
@@ -125,7 +126,7 @@ require('lazy').setup({
                 }
             })
 
-	    local cmp_select = { behaviour = cmp.SelectBehavior.Select }
+            local cmp_select = { behaviour = cmp.SelectBehavior.Select }
 
             cmp.setup({
                 snippet = {
@@ -143,7 +144,7 @@ require('lazy').setup({
                     { name = 'nvim_lsp' },
                     { name = 'luasnip' },
                 }, {
-                    {name = 'buffer' },
+                    { name = 'buffer' },
                 })
             })
 
@@ -157,14 +158,78 @@ require('lazy').setup({
                     prefix = '',
                 },
             })
+
+
+            -- Auto format on save
+            vim.api.nvim_create_autocmd('LspAttach', {
+                callback = function(args)
+                    local client = vim.lsp.get_client_by_id(args.data.client_id)
+                    if not client then return end
+                    if client.supports_method('textDocument/formating') then
+                        -- Format the current buffer on save
+                        vim.api.nvim_create_autocmd('BufWritePre', {
+                            buffer = args.buf,
+                            callback = function()
+                                vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+                            end,
+                        })
+                    end
+                end,
+            })
         end
+    },
+
+    {
+        'folke/which-key.nvim',
+        event = 'VeryLazy',
+        opts = {
+        },
     },
 
     -- Comments
     {
         'numToStr/Comment.nvim',
         opts = {},
-    }
+    },
+
+    -- Treesitter
+    {
+        'nvim-treesitter/nvim-treesitter',
+        config = function()
+            require('nvim-treesitter.configs').setup({
+                ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query' },
+
+                auto_install = true,
+
+                hightlight = {
+                    enable = true,
+                },
+                indent = {
+                    enable = true,
+                }
+            })
+        end,
+    },
+
+    -- HTML autoclose tag
+    {
+        'windwp/nvim-ts-autotag',
+        config = function()
+            require('nvim-ts-autotag').setup({
+                opts = {
+                    enable_close = true,
+                    enable_rename = true,
+                    enable_close_on_slash = false
+                },
+            })
+        end
+    },
+
+    {
+        'windwp/nvim-autopairs',
+        event = 'InsertEnter',
+        config = true
+    },
 
 })
 
