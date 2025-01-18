@@ -48,7 +48,9 @@ require('lazy').setup({
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         config = function()
             return require('lualine').setup({
-                options = { theme = 'ayu_dark' }
+                options = {
+                    theme = 'codedark'
+                }
             })
         end,
     },
