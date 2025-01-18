@@ -39,6 +39,7 @@ require('lazy').setup({
             vim.keymap.set('n', '<leader>sf', require('fzf-lua').files, { desc = 'fzf files' })
             vim.keymap.set('n', '<leader>sw', require('fzf-lua').grep_cword, { desc = 'fzf grep cword' })
             vim.keymap.set('n', '<Esc><Esc>', require('fzf-lua').buffers, { desc = 'fzf buffers' })
+            vim.keymap.set('n', 'gd', require('fzf-lua').lsp_definitions, { desc = 'lsp definitions' })
         end,
     },
 
@@ -178,6 +179,8 @@ require('lazy').setup({
                     end
                 end,
             })
+
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Show info about that under cursor' })
         end
     },
 
@@ -225,13 +228,7 @@ require('lazy').setup({
                 },
             })
         end
-    },
-
-    {
-        'windwp/nvim-autopairs',
-        event = 'InsertEnter',
-        config = true
-    },
+    }
 
 })
 

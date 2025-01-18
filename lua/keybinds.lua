@@ -10,6 +10,6 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus up' })
 -- Back to netrw
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Return to netrw' })
 
-
 -- Exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
