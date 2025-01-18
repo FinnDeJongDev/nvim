@@ -12,3 +12,8 @@ It might not be all of them :\ I may have forgotten some requirements
 For the background set your desktop wallpaper to [this](content.jpeg) or any other background you want.  
 Then set your terminal settings to be transparent, this is done at profiles and go to colors, thange to built-in-themes and click GNOME-dark.  
 Afterwards you click on the default color background. Make this black. And  click use transparent background. This should be around 12.5% or 1/8 to full.
+
+Lastly we want to remove the my home from desktop since it's confusing. This is done by the following command.  
+```bash
+gsettings set org.gnome.shell.extensions.ding show-home false
+```
