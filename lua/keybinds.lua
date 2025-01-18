@@ -13,3 +13,4 @@ vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Return to netrw' })
 -- Exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
