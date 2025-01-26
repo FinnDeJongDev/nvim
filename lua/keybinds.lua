@@ -14,3 +14,4 @@ vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Return to netrw' })
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
+vim.keymap.set('n', '<leader>dd', vim.diagnostic.open_float, { desc = 'Show diagnostic' })

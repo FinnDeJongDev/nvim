@@ -12,14 +12,14 @@ vim.opt.undofile = true
 
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
+vim.opt.wrap = true
 
 vim.opt.signcolumn = 'yes'
 
 vim.opt.updatetime = 250
 
 vim.opt.splitright = true
-vim.opt.splitbelow = false
+vim.opt.splitbelow = true
 
 vim.opt.cursorline = true
 

@@ -57,6 +57,12 @@ require('lazy').setup({
         end,
     },
 
+    -- Lualine add
+    {
+        'mawkler/modicator.nvim',
+        opts = {}
+    },
+
     -- Theme
     {
         'olimorris/onedarkpro.nvim',
@@ -229,8 +235,31 @@ require('lazy').setup({
                 },
             })
         end
-    }
+    },
 
+    -- Indent visualization
+    {
+        'echasnovski/mini.indentscope',
+        version = '*',
+        opts = {
+            draw = {
+                delay = 10
+            }
+        }
+    },
+
+    -- Noice nvim
+    {
+        'folke/noice.nvim',
+        event = 'VeryLazy',
+        opts = {
+
+        },
+        dependencies = {
+            'MunifTanjim/nui.nvim',
+            { 'rcarriga/nvim-notify', opts = { background_colour = '#000000' } },
+        }
+    },
 })
 
 vim.cmd('colorscheme onedark_dark')
